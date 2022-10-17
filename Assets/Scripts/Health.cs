@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using System;
 
 public class Health : MonoBehaviour
 {
-    public float timeRemaining = 0.0f;
+    public float timeRemaining = 10.0f;
     public bool timerIsRunning = true;
 
     public int curHealth = 0;
@@ -22,7 +23,7 @@ public class Health : MonoBehaviour
     {
         if (timerIsRunning)
         {
-            if (timeRemaining > 0 || curHealth > 0)
+            if (timeRemaining > 0 && curHealth > 0)
             {   
                 timeRemaining -= Time.fixedDeltaTime;
                 if((int) timeRemaining % 2 == 0) {
@@ -33,6 +34,7 @@ public class Health : MonoBehaviour
             {
                 timeRemaining = 0;
                 timerIsRunning = false;
+                SceneManager.LoadScene("GameOver");
             }
         }
     }
